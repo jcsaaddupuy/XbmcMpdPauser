@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Config">
+        <setting label="32000" type="text"   id="hostname" default="localhost"/>
+        <setting label="32001" type="number" id="port" default="6600"/>
+        <setting label="32002" type="text"   id="password" option="hidden" default=""/>
+        
+        <setting type="sep"/>
+        <setting label="32010" type="bool"   id="32010"  default="true"/>
+    </category>
+</settings>

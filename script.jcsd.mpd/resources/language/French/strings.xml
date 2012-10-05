@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <!-- strings 32000 thru 32999 reserved for scripts -->
+  <string id="32000">Nom d'hôte</string>
+  <string id="32001">Port</string>
+  <string id="32002">Mot de passe</string>
+  
+  <string id="32010">Debug</string>
+  
+</strings>

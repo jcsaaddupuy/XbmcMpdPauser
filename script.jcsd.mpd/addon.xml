@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.jcsd.mpd"
+       name="MPD Pauser"
+       version="0.0.0"
+       provider-name="JCSD">
+  <requires>
+    <import addon="xbmc.python" version="1.0"/>
+  </requires>
+   <extension point="xbmc.python.script"
+             library="default.py" />
+   <extension point="xbmc.service"
+             library="default.py" start="[login|startup]">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Put your MPD in pause</summary>
+    <platform>all</platform>
+  </extension>
+</addon>
