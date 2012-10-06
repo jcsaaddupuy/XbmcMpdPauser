@@ -10,16 +10,17 @@ class NotificationHandler:
 
 
 class MpdNotificationHandler(NotificationHandler):
+    _mpdconfig = None
     _mpd = None
     _policy = None
         
-    def __init__(self, mpdclient, policy):
-        self._mpd = mpdclient
+    def __init__(self, mpdconfig, policy):
+        self._mpdconfig = mpdconfig
         self._policy = policy
         
     def playbackStarted(self):
-        pass
+        print "Playback started"
     def playbackEnded(self):
-        pass
+        print "Playback Ended"
     def playbackPaused(self):
-        pass
+        print "Playback paused"

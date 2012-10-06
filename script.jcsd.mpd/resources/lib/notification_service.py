@@ -19,6 +19,9 @@ class NotificationService(threading.Thread):
     _handler = None
     _notificationBuffer = ""
 
+    def __init__(self, handler):
+        self._handler = handler
+        threading.Thread.__init__(self)
 
     def _forward(self, notification):
         """ Fowards the notification recieved to a function on the scrobbler """

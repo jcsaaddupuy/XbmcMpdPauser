@@ -1,14 +1,27 @@
-import sys, time
-import xbmc
-
 import debug
+import sys, os
+import xbmcaddon
 
-import mpd
+__scriptid__ = 'script.jcsd.mpd'
+__addon__ = xbmcaddon.Addon(id=__scriptid__)
 
-    
-#while (not xbmc.abortRequested):
-    #if xbmc.Player.isPlaying():
-print xbmc.Player().isPlaying()
-    #else:
-    #    print "Not playing"
+sys.path.append( os.path.join ( __addon__.getAddonInfo('path'), 'resources','lib') )
+from config import Config
+from mpdconfig import MpdConfig, MpdPolicyConfig
+from notification_handler import MpdNotificationHandler
+from notification_service import NotificationService
 
+
+
+mpdconfig = MpdConfig()
+mpdPolicyConfig = MpdPolicyConfig()
+
+config = Config()
+config.loadMpdConfig(__addon__, mpdconfig)
+config.loadMpdPolicyConfig(__addon__, mpdPolicyConfig)
+
+mpdh = MpdNotificationHandler(mpdconfig, mpdPolicyConfig)
+ns = NotificationService(mpdh)
+
+ns.start()
+ns.join()
