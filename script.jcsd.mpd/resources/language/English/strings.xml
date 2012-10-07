@@ -10,7 +10,7 @@
   <string id="32011">Put MPD in pause when playback start</string>
   <string id="32012">Send MPD play when playback starts</string>
   <string id="32013">Send MPD play when playback stops</string>
-  <string id="32014">Delay before MPD play</string>
-  <string id="32015">Delay before MPD pause</string>
+  <string id="32014">Delay before MPD play (seconds)</string>
+  <string id="32015">Delay before MPD pause (seconds)</string>
   
 </strings>
