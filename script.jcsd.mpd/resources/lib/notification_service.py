@@ -27,16 +27,17 @@ class NotificationService(threading.Thread):
         """ Fowards the notification recieved to a function on the scrobbler """
         if not ('method' in notification and 'params' in notification and 'sender' in notification['params'] and notification['params']['sender'] == 'xbmc'):
             return
-
-        if notification['method'] == 'Player.OnStop':
-            self._handler.playbackEnded()
-        elif notification['method'] == 'Player.OnPlay':
-            self._handler.playbackStarted()
-        elif notification['method'] == 'Player.OnPause':
-            self._handler.playbackPaused()
-        elif notification['method'] == 'System.OnQuit':
-            self._abortRequested = True
-
+        try:
+            if notification['method'] == 'Player.OnStop':
+                self._handler.playbackEnded()
+            elif notification['method'] == 'Player.OnPlay':
+                self._handler.playbackStarted()
+            elif notification['method'] == 'Player.OnPause':
+                self._handler.playbackPaused()
+            elif notification['method'] == 'System.OnQuit':
+                self._abortRequested = True
+        except Exception as e :
+            print "Error whith handler : '%s'"%(e)
 
     def _readNotification(self, telnet):
         """ Read a notification from the telnet connection, blocks until the data is available, or else raises an EOFError if the connection is lost """

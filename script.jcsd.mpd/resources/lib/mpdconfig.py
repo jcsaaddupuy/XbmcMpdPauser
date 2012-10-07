@@ -9,8 +9,9 @@ class MpdConfig:
 class MpdPolicyConfig:
     delayPlay = None
     delayPause = None
-    playWhenXbmcPaused = None
-    playWhenXbmcStop = None
+    pauseOnXbmcPlay = None
+    playOnXbmcPaused = None
+    playOnXbmcStop = None
     
     def __init__(self):
         pass

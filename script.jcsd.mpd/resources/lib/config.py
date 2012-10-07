@@ -9,4 +9,6 @@ class Config:
         print mpdconfig.port
         print mpdconfig.password
     def loadMpdPolicyConfig(self, addon, mpdPolicyConfig):
-        pass
+        mpdPolicyConfig.pauseOnXbmcPlay = True
+        mpdPolicyConfig.playOnXbmcPaused = False
+        mpdPolicyConfig.playOnXbmcStop = True
