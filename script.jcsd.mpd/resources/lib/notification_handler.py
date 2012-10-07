@@ -1,3 +1,4 @@
+import time
 from mpd import (MPDClient, CommandError)
 from socket import error as SocketError
 
@@ -38,8 +39,8 @@ class MpdNotificationHandler(NotificationHandler):
         print "Playback started"
         client = self.getClient()
         if client is not None:
-            print client.status()['state']
             if client.status()['state'] == 'play' and self._policy.pauseOnXbmcPlay:
+                time.sleep(self._policy.delayPause)
                 client.pause()
                 self._wasPaused = True
                 
@@ -47,20 +48,21 @@ class MpdNotificationHandler(NotificationHandler):
         print "Playback Ended"
         client = self.getClient()
         if client is not None:
-            print client.status()['state']
             if self._wasPaused :
                 if client.status()['state'] == 'pause' and self._policy.playOnXbmcStop:
+                    time.sleep(self._policy.delayPlay)
                     client.play()
                 self._wasPaused = False
     def playbackPaused(self):
         print "Playback paused"
         client = self.getClient()
         if client is not None:
-            print client.status()['state']
             if self._wasPaused :
                 if client.status()['state'] == 'pause' and self._policy.playOnXbmcPaused:
+                    time.sleep(self._policy.delayPlay)
                     client.play()
                 self._wasPaused = False
+                
     def getClient(self):
         self.loadconfig()
         client = MPDClient()

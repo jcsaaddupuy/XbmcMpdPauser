@@ -4,7 +4,12 @@
   <string id="32000">Nom d'hôte</string>
   <string id="32001">Port</string>
   <string id="32002">Mot de passe</string>
-  
   <string id="32010">Debug</string>
+  
+  <string id="32011">Mettre MPD en pause lors de la lecture</string>
+  <string id="32012">Reprendre lorsque XBMC est en pause</string>
+  <string id="32013">Reprendre lorsque XBMC la lecture s'arrète</string>
+  <string id="32014">Délai avant reprise</string>
+  <string id="32015">Délai avant mise en pause</string>
   
 </strings>

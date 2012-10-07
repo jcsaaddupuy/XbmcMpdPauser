@@ -5,10 +5,10 @@ class Config:
         mpdconfig.host = addon.getSetting('host')    
         mpdconfig.port = addon.getSetting('port')
         mpdconfig.password = addon.getSetting('password')
-        print mpdconfig.host
-        print mpdconfig.port
-        print mpdconfig.password
+
     def loadMpdPolicyConfig(self, addon, mpdPolicyConfig):
-        mpdPolicyConfig.pauseOnXbmcPlay = True
-        mpdPolicyConfig.playOnXbmcPaused = False
-        mpdPolicyConfig.playOnXbmcStop = True
+        mpdPolicyConfig.pauseOnXbmcPlay = addon.getSetting('pauseOnXbmcPlay')
+        mpdPolicyConfig.playOnXbmcPaused = addon.getSetting('playOnXbmcPaused')
+        mpdPolicyConfig.playOnXbmcStop = addon.getSetting('playOnXbmcStop')
+        mpdPolicyConfig.delayPause = float(addon.getSetting('delayPause'))
+        mpdPolicyConfig.delayPlay = float(addon.getSetting('delayPlay'))
