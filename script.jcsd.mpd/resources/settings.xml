@@ -14,8 +14,8 @@
         <setting label="32012" type="bool"   id="playOnXbmcPaused"  default="false"/>
         <setting label="32013" type="bool"   id="playOnXbmcStop"  default="true"/>
         
-        <setting label="320014" type="number" id="delayPlay" default="1"/>
-        <setting label="320015" type="number" id="delayPause" default="1"/>
+        <setting label="32014" type="number" id="delayPlay" default="1"/>
+        <setting label="32015" type="number" id="delayPause" default="1"/>
     </category>
     
 </settings>
