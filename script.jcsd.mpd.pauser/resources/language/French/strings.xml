@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <!-- strings 32000 thru 32999 reserved for scripts -->
+  <string id="32000">Configuration</string>
+  <string id="32001">Nom d'hôte</string>
+  <string id="32002">Port</string>
+  <string id="32003">Mot de passe</string>
+  
+  <string id="32010">Comportement</string>
+  <string id="32011">Mettre MPD en pause lorsque XBMC est en lecture</string>
+  <string id="32012">Reprendre lorsque XBMC est en pause</string>
+  <string id="32013">Reprendre lorsque lecture XBMC s'arrète</string>
+  <string id="32014">Délai avant reprise (secondes)</string>
+  <string id="32015">Délai avant mise en pause (secondes)</string>
+  
+  <string id="32020">Debug</string>
+  <string id="32021">Remote debug</string>
+  <string id="32022">Debugger adress</string>
+  <string id="32023">Log to file</string>
+  <string id="32024">File</string>
+</strings>
