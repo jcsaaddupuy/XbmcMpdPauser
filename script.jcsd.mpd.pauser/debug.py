@@ -15,13 +15,14 @@ class Debug:
             os.makedirs(self.logfolder)
             
     def Log(self, data):
-        try:
-            xbmc.log(data)
-            l = open(os.path.join(self.logfolder, __logfname__), 'a+')
-            l.write(data+"\n")
-            l.close()
-        except Exception as e:
-            print e
+        if self.isLogTofile :
+            try:
+                xbmc.log(data)
+                l = open(os.path.join(self.logfolder, __logfname__), 'a+')
+                l.write(data+"\n")
+                l.close()
+            except Exception as e:
+                xbmc.log(e)
             
     @staticmethod
     def launch_remote_debug():
