@@ -35,6 +35,7 @@ class Debug:
         d.Log("debug_port %s"%(debug_port))
         # append pydev remote debugger
         if isRemoteDebug == True:
+            d.Log("Remote debug enabled")
             # Make pydev debugger works for auto reload.
             # Note pydevd module need to be copied in XBMC\system\python\Lib\pysrc
             try:
@@ -47,3 +48,5 @@ class Debug:
             except ImportError:
                 d.Log("Error: You must add org.python.pydev.debug.pysrc to your PYTHONPATH.")
                 sys.exit(1)
+        else:
+            d.Log("Remote debug disabled")
