@@ -19,16 +19,16 @@ class Debug:
             try:
                 xbmc.log(data)
                 l = open(os.path.join(self.logfolder, __logfname__), 'a+')
-                l.write(data+"\n")
+                l.write(data + "\n")
                 l.close()
-            except Exception as e:
+            except Exception, (e):
                 xbmc.log(e)
             
     @staticmethod
     def launch_remote_debug():
-        d=Debug()
+        d = Debug()
         isRemoteDebug = __addon__.getSetting('remote_debug')
-        debug_port = int( __addon__.getSetting('debug_port'))
+        debug_port = int(__addon__.getSetting('debug_port'))
         debug_host = __addon__.getSetting('debug_host')
         # append pydev remote debugger
         if isRemoteDebug == True:

@@ -91,10 +91,13 @@ class MpdNotificationHandler(NotificationHandler):
                 except CommandError:
                     d.Log( "Error while authentication")
                     raise
-        except SocketError as e:
+        except SocketError, (e):
             d.Log(e)
             return False
-        except CommandError as e:
+        except CommandError, (e):
+            d.Log(e)
+            return False
+        except Exception , (e):
             d.Log(e)
             return False
         return True
