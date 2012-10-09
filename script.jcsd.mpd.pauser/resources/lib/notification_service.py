@@ -38,7 +38,7 @@ class NotificationService(threading.Thread):
             elif notification['method'] == 'System.OnQuit':
                 self._abortRequested = True
         except Exception , (e, s) :
-            debug.Log("Error whith handler : '%s'" % (s))
+            xbmc.log("[MPD PAUSER] Error whith handler : '%s'" % (s), level=xbmc.LOGERROR)
 
     def _readNotification(self, telnet):
         """ Read a notification from the telnet connection, blocks until the data is available, or else raises an EOFError if the connection is lost """
@@ -58,17 +58,17 @@ class NotificationService(threading.Thread):
                 self._notificationBuffer = self._notificationBuffer[offset:]
             except ValueError:
                 continue
-            except Exception , (e,s):
-                debug.Log(s)
+            except Exception , (e, s):
+                xbmc.log(s, level=xbmc.LOGSEVERE)
                 break
             return data
 
 
     def run(self):
-        debug.Log("Notification service started")
+        xbmc.log("[MPD PAUSER] Notification service started")
         #while xbmc is running
         telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
-        debug.Log("Telnet service created")
+        xbmc.log("[MPD PAUSER] Telnet service created")
         while not (self._abortRequested or xbmc.abortRequested):
             try:
                 data = self._readNotification(telnet)
@@ -76,11 +76,11 @@ class NotificationService(threading.Thread):
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
                 self._notificationBuffer = ""
                 continue
-            except Exception, (e,s):
-                debug.Log(s)
+            except Exception, (e, s):
+                xbmc.log(s, level=xbmc.LOGSEVERE)
                 break
             self._forward(data)
 
         telnet.close()
-        debug.Log("Notification service stopped")
+        xbmc.log("[MPD PAUSER] Notification service stopped")
         #self._handler.abortRequested = True
