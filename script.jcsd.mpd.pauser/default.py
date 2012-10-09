@@ -3,11 +3,14 @@ from debug import Debug
 import sys, os
 import xbmcaddon, xbmc
 
+
 __scriptid__ = 'script.jcsd.mpd.pauser'
+xbmc.log("[MPD PAUSER] %s loaded" % (__scriptid__), level=xbmc.LOGERROR)
+
 __addon__ = xbmcaddon.Addon(id=__scriptid__)
 sys.path.append(os.path.join (__addon__.getAddonInfo('path'), 'resources', 'lib'))
 
-xbmc.log("[MPD PAUSER] %s started" % (__scriptid__))
+xbmc.log("[MPD PAUSER] %s started" % (__scriptid__), level=xbmc.LOGERROR)
 Debug.launch_remote_debug()
 
 
