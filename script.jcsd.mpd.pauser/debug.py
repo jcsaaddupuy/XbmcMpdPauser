@@ -30,12 +30,17 @@ class Debug:
         isRemoteDebug = __addon__.getSetting('remote_debug')
         debug_port = int(__addon__.getSetting('debug_port'))
         debug_host = __addon__.getSetting('debug_host')
+        d.Log("isRemoteDebug %s"%(isRemoteDebug))
+        d.Log("debug_host %s"%(debug_host))
+        d.Log("debug_host %s"%(debug_host))
         # append pydev remote debugger
         if isRemoteDebug == True:
             # Make pydev debugger works for auto reload.
             # Note pydevd module need to be copied in XBMC\system\python\Lib\pysrc
             try:
+                d.Log("Trying to import pydevd")
                 import pysrc.pydevd as pydevd
+                d.Log("Import ok")
                 # stdoutToServer and stderrToServer redirect stdout and stderr to eclipse console
                 pydevd.settrace(debug_host, port=debug_port, stdoutToServer=True, stderrToServer=True, trace_only_current_thread=False)
                 d.Log("Remote debugger connected")
