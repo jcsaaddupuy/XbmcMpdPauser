@@ -27,14 +27,14 @@ class Debug:
     @staticmethod
     def launch_remote_debug():
         d = Debug()
-        isRemoteDebug = __addon__.getSetting('remote_debug')
+        isRemoteDebug = bool(__addon__.getSetting('remote_debug'))
         debug_port = int(__addon__.getSetting('debug_port'))
         debug_host = __addon__.getSetting('debug_host')
-        d.Log("isRemoteDebug %s"%(isRemoteDebug))
-        d.Log("debug_host %s"%(debug_host))
-        d.Log("debug_port %s"%(debug_port))
+        d.Log("isRemoteDebug '%s'"%(isRemoteDebug))
+        d.Log("debug_host '%s'"%(debug_host))
+        d.Log("debug_port '%s'"%(debug_port))
         # append pydev remote debugger
-        if isRemoteDebug == True:
+        if isRemoteDebug == 'true':
             d.Log("Remote debug enabled")
             # Make pydev debugger works for auto reload.
             # Note pydevd module need to be copied in XBMC\system\python\Lib\pysrc
