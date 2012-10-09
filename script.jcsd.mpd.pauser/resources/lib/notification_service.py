@@ -58,7 +58,9 @@ class NotificationService(threading.Thread):
                 self._notificationBuffer = self._notificationBuffer[offset:]
             except ValueError:
                 continue
-
+            except Exception as e:
+                debug.Log(e)
+                break
             return data
 
 
@@ -66,7 +68,7 @@ class NotificationService(threading.Thread):
         debug.Log("Notification service started")
         #while xbmc is running
         telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
-
+        debug.Log("Telnet service createdS")
         while not (self._abortRequested or xbmc.abortRequested):
             try:
                 data = self._readNotification(telnet)
@@ -74,6 +76,9 @@ class NotificationService(threading.Thread):
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
                 self._notificationBuffer = ""
                 continue
+            except Exception as e:
+                debug.Log(e)
+                break
             self._forward(data)
 
         telnet.close()
