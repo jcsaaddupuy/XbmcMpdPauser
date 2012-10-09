@@ -37,7 +37,7 @@ class Debug:
             try:
                 import pysrc.pydevd as pydevd
                 # stdoutToServer and stderrToServer redirect stdout and stderr to eclipse console
-                pydevd.settrace(debug_host, port=debug_port, stdoutToServer=True, stderrToServer=True)
+                pydevd.settrace(debug_host, port=debug_port, stdoutToServer=True, stderrToServer=True, trace_only_current_thread=False)
                 d.Log("Remote debugger connected")
             except ImportError:
                 d.Log("Error: You must add org.python.pydev.debug.pysrc to your PYTHONPATH.")

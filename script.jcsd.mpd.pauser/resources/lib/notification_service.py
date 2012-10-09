@@ -68,7 +68,7 @@ class NotificationService(threading.Thread):
         debug.Log("Notification service started")
         #while xbmc is running
         telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
-        debug.Log("Telnet service createdS")
+        debug.Log("Telnet service created")
         while not (self._abortRequested or xbmc.abortRequested):
             try:
                 data = self._readNotification(telnet)
