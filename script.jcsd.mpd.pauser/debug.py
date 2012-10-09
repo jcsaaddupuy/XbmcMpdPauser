@@ -1,5 +1,7 @@
 import sys, os
 import xbmcaddon, xbmc
+import logging
+
 
 __scriptid__ = 'script.jcsd.mpd.pauser'
 __addon__ = xbmcaddon.Addon(id=__scriptid__)
@@ -7,32 +9,40 @@ __logfname__ = "addon.log"
 
 class Debug:
     _addon = None
-    def __init__(self):        
-        self.isLogTofile = __addon__.getSetting('log_to_file')
-        self.logfolder = __addon__.getSetting('log_folder')
+    _isLogTofile = __addon__.getSetting('log_to_file')
+    _logfolder = __addon__.getSetting('log_folder')
+    
+     def __getattribute__(self, name):
+        return getattr(logging, name)
+    def __delattr__(self, name):
+        delattr(logging, name)
+    def __setattr__(self, name, value):
+        setattr(logging, name, value)
         
-        if self.isLogTofile and not os.path.exists(self.logfolder):
-            os.makedirs(self.logfolder)
             
     def Log(self, data):
         if self.isLogTofile == 'true':
             try:
                 xbmc.log(data)
-                l = open(os.path.join(self.logfolder, __logfname__), 'a+')
-                l.write(data + "\n")
-                l.close()
+                
             except Exception, (e):
                 xbmc.log(e)
-            
+                
+    @staticmethod
+    def init_log():
+        logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s %(message)s',
+                    filename=os.path.join(self.logfolder, __logfname__),
+                    filemode='w')        
     @staticmethod
     def launch_remote_debug():
         d = Debug()
         isRemoteDebug = __addon__.getSetting('remote_debug')
         debug_port = int(__addon__.getSetting('debug_port'))
         debug_host = __addon__.getSetting('debug_host')
-        d.Log("isRemoteDebug '%s'"%(isRemoteDebug))
-        d.Log("debug_host '%s'"%(debug_host))
-        d.Log("debug_port '%s'"%(debug_port))
+        d.Log("isRemoteDebug '%s'" % (isRemoteDebug))
+        d.Log("debug_host '%s'" % (debug_host))
+        d.Log("debug_port '%s'" % (debug_port))
         # append pydev remote debugger
         if isRemoteDebug == 'true':
             d.Log("Remote debug enabled")
