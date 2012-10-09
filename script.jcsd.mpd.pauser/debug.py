@@ -27,7 +27,7 @@ class Debug:
     @staticmethod
     def launch_remote_debug():
         d = Debug()
-        isRemoteDebug = bool(__addon__.getSetting('remote_debug'))
+        isRemoteDebug = __addon__.getSetting('remote_debug')
         debug_port = int(__addon__.getSetting('debug_port'))
         debug_host = __addon__.getSetting('debug_host')
         d.Log("isRemoteDebug '%s'"%(isRemoteDebug))
