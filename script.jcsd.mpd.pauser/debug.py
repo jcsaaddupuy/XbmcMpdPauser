@@ -32,7 +32,7 @@ class Debug:
         debug_host = __addon__.getSetting('debug_host')
         d.Log("isRemoteDebug %s"%(isRemoteDebug))
         d.Log("debug_host %s"%(debug_host))
-        d.Log("debug_host %s"%(debug_host))
+        d.Log("debug_port %s"%(debug_port))
         # append pydev remote debugger
         if isRemoteDebug == True:
             # Make pydev debugger works for auto reload.
