@@ -37,8 +37,8 @@ class NotificationService(threading.Thread):
                 self._handler.playbackPaused()
             elif notification['method'] == 'System.OnQuit':
                 self._abortRequested = True
-        except Exception , (e) :
-            print "Error whith handler : '%s'" % (e)
+        except Exception , (e, s) :
+            debug.Log("Error whith handler : '%s'" % (s))
 
     def _readNotification(self, telnet):
         """ Read a notification from the telnet connection, blocks until the data is available, or else raises an EOFError if the connection is lost """
@@ -58,8 +58,8 @@ class NotificationService(threading.Thread):
                 self._notificationBuffer = self._notificationBuffer[offset:]
             except ValueError:
                 continue
-            except Exception , (e):
-                debug.Log(e)
+            except Exception , (e,s):
+                debug.Log(s)
                 break
             return data
 
@@ -76,8 +76,8 @@ class NotificationService(threading.Thread):
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
                 self._notificationBuffer = ""
                 continue
-            except Exception, (e):
-                debug.Log(e)
+            except Exception, (e,s):
+                debug.Log(s)
                 break
             self._forward(data)
 
