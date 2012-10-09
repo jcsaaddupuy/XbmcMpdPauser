@@ -15,7 +15,7 @@ class Debug:
             os.makedirs(self.logfolder)
             
     def Log(self, data):
-        if self.isLogTofile :
+        if self.isLogTofile == 'true':
             try:
                 xbmc.log(data)
                 l = open(os.path.join(self.logfolder, __logfname__), 'a+')

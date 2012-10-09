@@ -79,7 +79,7 @@ NORM_FILENAME_TO_SERVER_CONTAINER = {}
 NORM_FILENAME_TO_CLIENT_CONTAINER = {}
 
 def _NormFile(filename):
-    filename = xbmc.translatePath(filename)
+    filename = xbmc.translatePath(filename).replace("/home/jc/","/home/pi")
     try:
         return NORM_FILENAME_CONTAINER[filename]
     except KeyError:
@@ -107,7 +107,7 @@ try:
         
         initial_norm_file = _NormFile
         def _NormFile(filename): #Let's redefine _NormFile to work with paths that may be incorrect
-            filename = xbmc.translatePath(filename)
+            filename = xbmc.translatePath(filename).replace("/home/jc/","/home/pi")
             try:
                 return NORM_SEARCH_CACHE[filename]
             except KeyError:
@@ -156,7 +156,7 @@ if PATHS_FROM_ECLIPSE_TO_PYTHON:
                 
     #only setup translation functions if absolutely needed! 
     def NormFileToServer(filename):
-        filename = xbmc.translatePath(filename)
+        filename = xbmc.translatePath(filename).replace("/home/jc/","/home/pi")
         #Eclipse will send the passed filename to be translated to the python process
         #So, this would be 'NormFileFromEclipseToPython' 
         try:
@@ -187,7 +187,7 @@ if PATHS_FROM_ECLIPSE_TO_PYTHON:
         
     
     def NormFileToClient(filename): 
-        filename = xbmc.translatePath(filename)
+        filename = xbmc.translatePath(filename).replace("/home/jc/","/home/pi")
         #The result of this method will be passed to eclipse
         #So, this would be 'NormFileFromPythonToEclipse'
         try:
