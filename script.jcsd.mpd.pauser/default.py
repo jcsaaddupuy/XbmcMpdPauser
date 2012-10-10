@@ -13,9 +13,6 @@ sys.path.append(os.path.join (__addon__.getAddonInfo('path'), 'resources', 'lib'
 xbmc.log(msg="[MPD PAUSER] %s started" % (__scriptid__), level=xbmc.LOGERROR)
 Debug.launch_remote_debug()
 
-
-
-
 from notification_handler import MpdNotificationHandler
 from notification_service import NotificationService
 
