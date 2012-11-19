@@ -14,10 +14,5 @@
         <setting label="32014" type="number" id="delayPlay" default="1"/>
         <setting label="32015" type="number" id="delayPause" default="1"/>
     </category>
-    
-    <category label ="32020">
-        <setting label="32021" type="bool"   	id="remote_debug"  default="true"/>
-        <setting label="32022" type="ipaddress"  id="debug_host"  default="192.168.0.20"/>
-        <setting label="32022" type="number"  id="debug_port"  default="5678"/>
-    </category>
+   
 </settings>
