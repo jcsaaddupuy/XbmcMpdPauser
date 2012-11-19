@@ -62,7 +62,8 @@ except:
 #defined as a list of tuples where the 1st element of the tuple is the path in the client machine
 #and the 2nd element is the path in the server machine.
 #see module docstring for more details.
-PATHS_FROM_ECLIPSE_TO_PYTHON = [(r'/home/jc/.xbmc/addons/script.jcsd.mpd.pauser', r'/home/pi/.xbmc/addons/script.jcsd.mpd.pauser')]
+PATHS_FROM_ECLIPSE_TO_PYTHON = [] 
+#[(r'/home/jc/.xbmc/addons/script.jcsd.mpd.pauser', r'/home/pi/.xbmc/addons/script.jcsd.mpd.pauser')]
 
 
 #example:
