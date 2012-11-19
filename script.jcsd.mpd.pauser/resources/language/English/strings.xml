@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <!-- strings 32000 thru 32999 reserved for scripts -->
+  <string id="32000">Configuration</string>
+  <string id="32001">Hostname</string>
+  <string id="32002">Port</string>
+  <string id="32003">Password</string>
+  
+  
+  <string id="32010">Behavior</string>
+  <string id="32011">Put MPD in pause when playback starts</string>
+  <string id="32012">Send MPD play when playback is paused</string>
+  <string id="32013">Send MPD play when playback stops</string>
+  <string id="32014">Delay before MPD play (seconds)</string>
+  <string id="32015">Delay before MPD pause (seconds)</string>
+  
+  <string id="32020">Debug</string>
+  <string id="32021">Remote debug</string>
+  <string id="32022">Debugger adresse</string>
+  <string id="32023">Log vers fichier</string>
+  <string id="32024">Fichier de log</string>
+</strings>
