@@ -19,8 +19,5 @@
         <setting label="32021" type="bool"   	id="remote_debug"  default="true"/>
         <setting label="32022" type="ipaddress"  id="debug_host"  default="192.168.0.20"/>
         <setting label="32022" type="number"  id="debug_port"  default="5678"/>
-        <setting type="sep"/>
-        <setting label="32023" type="bool"   	id="log_to_file"  default="true"/>
-        <setting label="32024" type="folder"   id="log_folder"  default="/tmp/xbmc/script.jcsd.mpd.pauser"/>
     </category>
 </settings>
