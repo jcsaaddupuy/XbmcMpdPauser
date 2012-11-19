@@ -1,9 +1,10 @@
 import time
 from mpd import (MPDClient, CommandError)
 from socket import error as SocketError
-
+import xbmc
 from config import Config
 from mpdconfig import MpdConfig, MpdPolicyConfig
+
 
 class NotificationHandler:
     def playbackStarted(self):
@@ -36,41 +37,44 @@ class MpdNotificationHandler(NotificationHandler):
         self._config.loadMpdPolicyConfig(self._addon, self._policy)
 
     def playbackStarted(self):
-        print "Playback started"
+        xbmc.log(msg="[MPD PAUSER] Playback started")
         client = self.getClient()
         if client is not None:
             if client.status()['state'] == 'play' and self._policy.pauseOnXbmcPlay:
                 time.sleep(self._policy.delayPause)
                 client.pause()
                 self._wasPaused = True
+                xbmc.log(msg="[MPD PAUSER] MPD Paused")
                 
     def playbackEnded(self):
-        print "Playback Ended"
+        xbmc.log(msg="[MPD PAUSER] Playback Ended")
         client = self.getClient()
         if client is not None:
             if self._wasPaused :
                 if client.status()['state'] == 'pause' and self._policy.playOnXbmcStop:
                     time.sleep(self._policy.delayPlay)
                     client.play()
+                    xbmc.log(msg="[MPD PAUSER] MPD Play")
                 self._wasPaused = False
     def playbackPaused(self):
-        print "Playback paused"
+        xbmc.log(msg="[MPD PAUSER] Playback paused")
         client = self.getClient()
         if client is not None:
             if self._wasPaused :
                 if client.status()['state'] == 'pause' and self._policy.playOnXbmcPaused:
                     time.sleep(self._policy.delayPlay)
                     client.play()
+                    xbmc.log(msg="[MPD PAUSER] MPD Play")
                 self._wasPaused = False
                 
     def getClient(self):
         self.loadconfig()
         client = MPDClient()
         if self.mpdConnect(client):
-            print 'Got connected!'
+            xbmc.log(msg="[MPD PAUSER] Got connected!")
             return client
         else:
-            print 'Failed to connect MPD server.'
+            xbmc.log(msg="[MPD PAUSER] Failed to connect MPD server.")
         return None
     
     def mpdConnect(self, client):
@@ -84,12 +88,15 @@ class MpdNotificationHandler(NotificationHandler):
                 try:
                     client.password(self._mpdconfig.password)
                 except CommandError:
-                    print "Error while authentication"
+                    xbmc.log(msg="[MPD PAUSER] Error while authentication", level=xbmc.LOGERROR)
                     raise
-        except SocketError as e:
-            print e
+        except SocketError, (e,s):
+            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGERROR)
             return False
-        except CommandError as e:
-            print e
+        except CommandError, (e,s):
+            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGERROR)
+            return False
+        except Exception , (e,s):
+            xbmc.log(msg=s, level=xbmc.LOGSEVERE)
             return False
         return True

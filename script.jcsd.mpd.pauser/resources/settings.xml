@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="32000">
+        <setting label="32001" type="text"   id="host" default="localhost"/>
+        <setting label="32002" type="number" id="port" default="6600"/>
+        <setting label="32003" type="text"   id="password" option="hidden" default=""/>
+    </category>
+    
+    <category label="32010">
+        <setting label="32011" type="bool"   id="pauseOnXbmcPlay"  default="true"/>
+        <setting label="32012" type="bool"   id="playOnXbmcPaused"  default="false"/>
+        <setting label="32013" type="bool"   id="playOnXbmcStop"  default="true"/>
+        
+        <setting label="32014" type="number" id="delayPlay" default="1"/>
+        <setting label="32015" type="number" id="delayPause" default="1"/>
+    </category>
+    
+    <category label ="32020">
+        <setting label="32021" type="bool"   	id="remote_debug"  default="true"/>
+        <setting label="32022" type="ipaddress"  id="debug_host"  default="192.168.0.20"/>
+        <setting label="32022" type="number"  id="debug_port"  default="5678"/>
+    </category>
+</settings>
