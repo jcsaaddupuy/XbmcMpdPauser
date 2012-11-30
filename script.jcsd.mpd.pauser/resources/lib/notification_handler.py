@@ -88,13 +88,13 @@ class MpdNotificationHandler(NotificationHandler):
                 try:
                     client.password(self._mpdconfig.password)
                 except CommandError:
-                    xbmc.log(msg="[MPD PAUSER] Error while authentication", level=xbmc.LOGERROR)
+                    xbmc.log(msg="[MPD PAUSER] Error while authentication", level=xbmc.LOGSEVERE)
                     raise
         except SocketError, (e,s):
-            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGERROR)
+            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGSEVERE)
             return False
         except CommandError, (e,s):
-            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGERROR)
+            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGSEVERE)
             return False
         except Exception , (e,s):
             xbmc.log(msg=s, level=xbmc.LOGSEVERE)
