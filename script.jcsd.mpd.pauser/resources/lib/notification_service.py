@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 """ Handles notifications from XBMC via its own thread and forwards them on to the handler """
-""" Script mainly """
+
+""" 
+    Script heavily inspired by the notification services presents in script.trakt and script.TrackUtilities
+    all credits to theirs respectives authors 
+"""
 import xbmc
 import telnetlib
 import socket
