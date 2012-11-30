@@ -14,9 +14,4 @@
   <string id="32014">Delay before MPD play (seconds)</string>
   <string id="32015">Delay before MPD pause (seconds)</string>
   
-  <string id="32020">Debug</string>
-  <string id="32021">Remote debug</string>
-  <string id="32022">Debugger adresse</string>
-  <string id="32023">Log vers fichier</string>
-  <string id="32024">Fichier de log</string>
 </strings>
