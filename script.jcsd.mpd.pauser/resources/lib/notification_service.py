@@ -8,9 +8,6 @@ import simplejson as json
 import threading
 from time import sleep
 
-from debug import Debug
-debug = Debug()
-
 class NotificationService(threading.Thread):
     """ Receives XBMC notifications and passes them off as needed """
 
@@ -74,12 +71,12 @@ class NotificationService(threading.Thread):
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
             except IOError, (errno, strerror):
                 tried = tried + 1
-                Debug("[Notification Service]  Telnet too soon? [%s] : %s " % (str(errno), strerror))
+                xbmc.log(msg="[Notification Service]  Telnet too soon? [%s] : %s " % (str(errno), strerror), level=xbmc.LOGSEVERE)
                 if tried < self._maxConnectionTry:
                     sleep(1)
                     continue
                 else:
-                    Debug("[Notification Service]  Could not establish connection after %i attemps. Shutdown" % (tried))
+                    xbmc.log("[Notification Service]  Could not establish connection after %i attemps. Shutdown" % (tried), level=xbmc.LOGFATAL)
                     break
             xbmc.log(msg="[MPD PAUSER] Telnet service created")
             while not (self._abortRequested or xbmc.abortRequested):
@@ -95,4 +92,3 @@ class NotificationService(threading.Thread):
                 self._forward(data)
         telnet.close()
         xbmc.log(msg="[MPD PAUSER] Notification service stopped")
-        #self._handler.abortRequested = True
