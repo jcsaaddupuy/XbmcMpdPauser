@@ -10,6 +10,6 @@ provider-name="jcsd">
 	library="default.py" name="script.jcsd.mpd.pauser.default"></extension>
 	<extension point="xbmc.addon.metadata">
 		<platform>all</platform>
-		<summary lang="en">Put MPD in pause when playing</summary>
+		<summary lang="en">Pause / Resume MPD when playback starts/stops</summary>
 	</extension>
 </addon>
