@@ -8,9 +8,9 @@
   
   
   <string id="32010">Behavior</string>
-  <string id="32011">Put MPD in pause when playback starts</string>
-  <string id="32012">Send MPD play when playback is paused</string>
-  <string id="32013">Send MPD play when playback stops</string>
+  <string id="32011">Pause MPD when playback starts</string>
+  <string id="32012">Resume MPD when playback is paused</string>
+  <string id="32013">Resume MPD when playback stops</string>
   <string id="32014">Delay before MPD play (seconds)</string>
   <string id="32015">Delay before MPD pause (seconds)</string>
   
