@@ -39,8 +39,8 @@ class NotificationService(threading.Thread):
                 self._handler.playbackPaused()
             elif notification['method'] == 'System.OnQuit':
                 self._abortRequested = True
-        except Exception , (e, s) :
-            xbmc.log(msg="[MPD PAUSER] Error whith handler : '%s'" % (s), level=xbmc.LOGERROR)
+        except Exception , e :
+            xbmc.log(msg="[MPD PAUSER] Error whith handler : '%s'" % (e), level=xbmc.LOGERROR)
 
     def _readNotification(self, telnet):
         """ Read a notification from the telnet connection, blocks until the data is available, or else raises an EOFError if the connection is lost """
@@ -60,8 +60,8 @@ class NotificationService(threading.Thread):
                 self._notificationBuffer = self._notificationBuffer[offset:]
             except ValueError:
                 continue
-            except Exception , (e, s):
-                xbmc.log(msg=s, level=xbmc.LOGSEVERE)
+            except Exception , e:
+                xbmc.log(msg=e, level=xbmc.LOGSEVERE)
                 break
             return data
 
@@ -73,9 +73,9 @@ class NotificationService(threading.Thread):
         while not (self._abortRequested or xbmc.abortRequested):
             try:
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
-            except IOError, (errno, strerror):
+            except IOError, e:
                 tried = tried + 1
-                xbmc.log(msg="[Notification Service]  Telnet too soon? [%s] : %s " % (str(errno), strerror), level=xbmc.LOGSEVERE)
+                xbmc.log(msg="[Notification Service]  Telnet too soon? : %s " % (e), level=xbmc.LOGSEVERE)
                 if tried < self._maxConnectionTry:
                     sleep(1)
                     continue
@@ -86,13 +86,13 @@ class NotificationService(threading.Thread):
             while not (self._abortRequested or xbmc.abortRequested):
                 try:
                     data = self._readNotification(telnet)
+                    self._forward(data)
                 except EOFError:
                     telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
                     self._notificationBuffer = ""
                     continue
-                except Exception, (errno, strerror):
-                    xbmc.log(msg=strerror, level=xbmc.LOGSEVERE)
+                except Exception, e:
+                    xbmc.log(msg=e, level=xbmc.LOGSEVERE)
                     break
-                self._forward(data)
         telnet.close()
         xbmc.log(msg="[MPD PAUSER] Notification service stopped")

@@ -90,13 +90,13 @@ class MpdNotificationHandler(NotificationHandler):
                 except CommandError:
                     xbmc.log(msg="[MPD PAUSER] Error while authentication", level=xbmc.LOGSEVERE)
                     raise
-        except SocketError, (e,s):
-            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGSEVERE)
+        except SocketError, e:
+            xbmc.log(msg="[MPD PAUSER] %s"%(e), level=xbmc.LOGSEVERE)
             return False
-        except CommandError, (e,s):
-            xbmc.log(msg="[MPD PAUSER] %s"%(s), level=xbmc.LOGSEVERE)
+        except CommandError, e:
+            xbmc.log(msg="[MPD PAUSER] %s"%(e), level=xbmc.LOGSEVERE)
             return False
-        except Exception , (e,s):
-            xbmc.log(msg=s, level=xbmc.LOGSEVERE)
+        except Exception , e:
+            xbmc.log(msg=e, level=xbmc.LOGSEVERE)
             return False
         return True
