@@ -18,6 +18,7 @@ class NotificationService(threading.Thread):
     TELNET_ADDRESS = 'localhost'
     TELNET_PORT = 9090
     _maxConnectionTry = 20
+    _connectionWaitRetry = 2
     _abortRequested = False
     _handler = None
     _notificationBuffer = ""
@@ -70,6 +71,7 @@ class NotificationService(threading.Thread):
         tried = 0
         xbmc.log(msg="[MPD PAUSER] Notification service started")
         #while xbmc is running
+        telnet = None
         while not (self._abortRequested or xbmc.abortRequested):
             try:
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
@@ -77,7 +79,7 @@ class NotificationService(threading.Thread):
                 tried = tried + 1
                 xbmc.log(msg="[Notification Service]  Telnet too soon? : %s " % (e), level=xbmc.LOGSEVERE)
                 if tried < self._maxConnectionTry:
-                    sleep(1)
+                    sleep(self._connectionWaitRetry)
                     continue
                 else:
                     xbmc.log("[Notification Service]  Could not establish connection after %i attemps. Shutdown" % (tried), level=xbmc.LOGFATAL)
@@ -94,5 +96,6 @@ class NotificationService(threading.Thread):
                 except Exception, e:
                     xbmc.log(msg=e, level=xbmc.LOGSEVERE)
                     break
-        telnet.close()
+        if telnet is not None:
+            telnet.close()
         xbmc.log(msg="[MPD PAUSER] Notification service stopped")
