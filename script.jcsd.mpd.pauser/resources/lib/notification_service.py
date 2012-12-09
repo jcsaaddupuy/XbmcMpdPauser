@@ -77,12 +77,12 @@ class NotificationService(threading.Thread):
                 telnet = telnetlib.Telnet(self.TELNET_ADDRESS, self.TELNET_PORT)
             except IOError, e:
                 tried = tried + 1
-                xbmc.log(msg="[Notification Service]  Telnet too soon? : %s " % (e), level=xbmc.LOGSEVERE)
+                xbmc.log(msg="[MPD PAUSER]  Telnet too soon? : %s " % (e), level=xbmc.LOGSEVERE)
                 if tried < self._maxConnectionTry:
                     sleep(self._connectionWaitRetry)
                     continue
                 else:
-                    xbmc.log("[Notification Service]  Could not establish connection after %i attemps. Shutdown" % (tried), level=xbmc.LOGFATAL)
+                    xbmc.log("[MPD PAUSER]  Could not establish connection after %i attemps. Shutdown" % (tried), level=xbmc.LOGFATAL)
                     break
             xbmc.log(msg="[MPD PAUSER] Telnet service created")
             while not (self._abortRequested or xbmc.abortRequested):
